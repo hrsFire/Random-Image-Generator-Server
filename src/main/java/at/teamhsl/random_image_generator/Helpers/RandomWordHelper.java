@@ -24,23 +24,11 @@ public class RandomWordHelper {
 	// Start of user code (user defined attributes)
 	
 	// End of user code
-	
 
-	private static RandomWordHelper INSTANCE;
-	
 	private RandomWordHelper(){
-	    // singleton
 	}
 	
-	public static RandomWordHelper getInstance(){
-	    if(INSTANCE == null){
-	        INSTANCE = new RandomWordHelper();
-	    }
-	
-	    return INSTANCE;
-	}
-	
-	public String GetRandomWord() throws Exception {
+	public static String GetRandomWord() throws Exception {
 		// Start of user code String GetRandomWord
 		String Url = "https://random-word-api.herokuapp.com/word?key=II3UMHMZ&number=1";
 		URL url = new URL(Url);
@@ -50,9 +38,11 @@ public class RandomWordHelper {
 		BufferedReader br = new BufferedReader(isr);
 		StringBuffer resp = new StringBuffer();
 		String inp;
+
 		while ((inp = br.readLine()) != null) {
 			resp.append(inp);
 		}
+
 		isr.close();
 		String respstr = resp.toString();
 

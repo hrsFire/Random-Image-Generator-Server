@@ -31,29 +31,32 @@ public class RandomImageURLHelper {
 	private RandomImageURLHelper(){
 	    // singleton
 	}
-	
-	public static RandomImageURLHelper getInstance(){
+
+	private static RandomImageURLHelper getInstance(){
 	    if(INSTANCE == null){
 	        INSTANCE = new RandomImageURLHelper();
 	    }
-	
+
 	    return INSTANCE;
 	}
 	
-	public String GetRandomImageURL(String Word) throws Exception {
+	public static String GetRandomImageURL(String Word) throws Exception {
 		// Start of user code GetRandomImageURL
-		APIKEY = "AIzaSyC8BSPovw3UtoxwL9tAMfj7XcIpBoCMrXU";
-		APIURL = "https://www.googleapis.com/customsearch/v1?q="+Word+"&cx=000784618626346885213%3Ar14xhqlh_xc&imgSize=xlarge&num=1&searchType=image&key=";
-		URL url = new URL(APIURL + APIKEY);
+		RandomImageURLHelper instance = getInstance();
+		instance.APIKEY = "AIzaSyC8BSPovw3UtoxwL9tAMfj7XcIpBoCMrXU";
+		instance.APIURL = "https://www.googleapis.com/customsearch/v1?q="+Word+"&cx=000784618626346885213%3Ar14xhqlh_xc&imgSize=xlarge&num=1&searchType=image&key=";
+		URL url = new URL(instance.APIURL + instance.APIKEY);
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		InputStreamReader isr = new InputStreamReader(con.getInputStream());
 		BufferedReader br = new BufferedReader(isr);
 		StringBuffer resp = new StringBuffer();
 		String inp;
+
 		while((inp = br.readLine()) != null) {
 			resp.append(inp);
 		}
+
 		isr.close();
 		String respstr = resp.toString();
 		JSONObject json = new JSONObject(respstr);

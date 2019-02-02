@@ -3,6 +3,7 @@ package at.teamhsl.random_image_generator.RestEndpoint;
 // Start of user code (user defined imports)
 import at.teamhsl.random_image_generator.Helpers.RandomImageURLHelper;
 import at.teamhsl.random_image_generator.Helpers.RandomWordHelper;
+import at.teamhsl.random_image_generator.Model.WordURL;
 // End of user code
 
 @org.springframework.web.bind.annotation.RestController
@@ -13,13 +14,11 @@ public class MainEndpoint {
 	
 	
 	@org.springframework.web.bind.annotation.GetMapping("/GetImageURL")
-	public WebURL GetImageURL() throws Exception {
+	public WordURL GetImageURL() throws Exception {
 		// Start of user code GetImageURL
-		WebURL res = new WebURL();
-		RandomWordHelper rwh = new RandomWordHelper();
-		RandomImageURLHelper riuh = new RandomImageURLHelper();
-		res.RandomWord = rwh.GetRandomWord();
-		res.ImageURL = riuh.GetRandomImageURL(res.RandomWord);
+		WordURL res = new WordURL();
+		res.RandomWord = RandomWordHelper.GetRandomWord();
+		res.ImageURL = RandomImageURLHelper.GetRandomImageURL(res.RandomWord);
 		return res;
 		// End of user code
 	}
