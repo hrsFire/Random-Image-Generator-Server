@@ -1,7 +1,8 @@
 package at.teamhsl.random_image_generator.RestEndpoint;
 
 // Start of user code (user defined imports)
-
+import at.teamhsl.random_image_generator.Helpers.RandomImageURLHelper;
+import at.teamhsl.random_image_generator.Helpers.RandomWordHelper;
 // End of user code
 
 @org.springframework.web.bind.annotation.RestController

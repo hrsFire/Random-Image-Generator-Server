@@ -1,14 +1,12 @@
 package at.teamhsl.random_image_generator.Helpers;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-
 import javax.net.ssl.HttpsURLConnection;
 // Start of user code (user defined imports)
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONObject;
 
 // End of user code
 
@@ -58,9 +56,8 @@ public class RandomImageURLHelper {
 		}
 		isr.close();
 		String respstr = resp.toString();
-		JSONParser jsnparser = new JSONParser();
-		JSONObject json = (JSONObject) jsnparser.parse(respstr);
-		JSONArray jarr = (JSONArray) json.get("items");
+		JSONObject json = new JSONObject(respstr);
+		//JSONArray jarr = (JSONArray) json.get("items");
 		return (String) json.get("link");
 		// End of user code
 	}

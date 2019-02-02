@@ -50,13 +50,15 @@ public class RandomWordHelper {
 		BufferedReader br = new BufferedReader(isr);
 		StringBuffer resp = new StringBuffer();
 		String inp;
-		while((inp = br.readLine()) != null) {
+		while ((inp = br.readLine()) != null) {
 			resp.append(inp);
 		}
 		isr.close();
 		String respstr = resp.toString();
-		return respstr.substring(2, respstr.length()-2)
-		// End of user code	
+
+		return respstr.substring(2, respstr.length() - 2);
+		// End of user code
+	}
 	// Start of user code (user defined operations)
 	
 	// End of user code

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>at.teamhsl.random_image_generator</groupId>
-	<artifactId>random_image_generator</artifactId>
+	<artifactId>random-image-generator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>random_image_generator</name>
+	<name>random-image-generator</name>
 	<description>Random Image Generator Web API</description>
 
 	<properties>
@@ -23,6 +23,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
