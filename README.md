@@ -1,4 +1,4 @@
-# Application
+# Random Image Server 
 Generated Server code with additional custom code for the business logic. It was initialized by using https://start.spring.io/ and requires the Web dependency.
 
 # Build
