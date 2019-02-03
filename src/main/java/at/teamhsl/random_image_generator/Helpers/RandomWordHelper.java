@@ -1,13 +1,10 @@
 package at.teamhsl.random_image_generator.Helpers;
 
+// Start of user code (user defined imports)
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-
 import javax.net.ssl.HttpsURLConnection;
-
-// Start of user code (user defined imports)
-
 // End of user code
 
 public class RandomWordHelper {
@@ -22,14 +19,25 @@ public class RandomWordHelper {
 	private String APIURL = null;
 	
 	// Start of user code (user defined attributes)
-	
 	// End of user code
+	
 
+	private static RandomWordHelper INSTANCE;
+	
 	private RandomWordHelper(){
+	    // singleton
+	}
+	
+	public static RandomWordHelper getInstance(){
+	    if(INSTANCE == null){
+	        INSTANCE = new RandomWordHelper();
+	    }
+	
+	    return INSTANCE;
 	}
 	
 	public static String GetRandomWord() throws Exception {
-		// Start of user code String GetRandomWord
+		// Start of user code GetRandomWord
 		String Url = "https://random-word-api.herokuapp.com/word?key=II3UMHMZ&number=1";
 		URL url = new URL(Url);
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
@@ -49,6 +57,7 @@ public class RandomWordHelper {
 		return respstr.substring(2, respstr.length() - 2);
 		// End of user code
 	}
+	
 	// Start of user code (user defined operations)
 	
 	// End of user code

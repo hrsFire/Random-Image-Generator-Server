@@ -14,7 +14,7 @@ public class MainEndpoint {
 	
 	
 	@org.springframework.web.bind.annotation.GetMapping("/GetImageURL")
-	public WordURL GetImageURL() throws Exception {
+	public at.teamhsl.random_image_generator.Model.WordURL GetImageURL() throws Exception {
 		// Start of user code GetImageURL
 		WordURL res = new WordURL();
 		res.RandomWord = RandomWordHelper.GetRandomWord();
