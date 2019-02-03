@@ -15,9 +15,9 @@ jobs:
         - cd ..
         - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git"
         - rm -rf Docs/generated/jacoco-ut Docs/generated/jacoco-it Docs/generated/apidocs
-        - cp -r Random-Image-Generator-Server/target/site/jacoco-ut docs/generated/
-        - cp -r Random-Image-Generator-Server/target/site/jacoco-it docs/generated/
-        - cp -r Random-Image-Generator-Server/target/site/apidocs docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/jacoco-ut Docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/jacoco-it Docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/apidocs Docs/generated/
         - cd Docs/generated
         - git add --all
         - git commit -am "update documentation"
