@@ -4,6 +4,7 @@ package at.teamhsl.random_image_generator.Helpers;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLEncoder;
 import javax.net.ssl.HttpsURLConnection;
 // End of user code
 
@@ -38,14 +39,29 @@ public class RandomWordHelper {
 	
 	public static String GetRandomWord() throws Exception {
 		// Start of user code GetRandomWord
-		String Url = "https://random-word-api.herokuapp.com/word?key=II3UMHMZ&number=1";
-		URL url = new URL(Url);
+		URL url = new URL("https://random-word-api.herokuapp.com/key");
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		InputStreamReader isr = new InputStreamReader(con.getInputStream());
 		BufferedReader br = new BufferedReader(isr);
 		StringBuffer resp = new StringBuffer();
 		String inp;
+
+		while((inp = br.readLine()) != null) {
+			resp.append(inp);
+		}
+
+		isr.close();
+		String apiKey = resp.toString();
+
+
+		String Url = "https://random-word-api.herokuapp.com/word?key=" + URLEncoder.encode(apiKey, "UTF-8")  + "&number=1";
+		url = new URL(Url);
+		con = (HttpsURLConnection) url.openConnection();
+		con.setRequestMethod("GET");
+		isr = new InputStreamReader(con.getInputStream());
+		br = new BufferedReader(isr);
+		resp = new StringBuffer();
 
 		while ((inp = br.readLine()) != null) {
 			resp.append(inp);
