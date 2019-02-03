@@ -54,12 +54,14 @@ public class RandomWordHelper {
 		isr.close();
 		String respstr = resp.toString();
 
-		return respstr.substring(2, respstr.length() - 2);
+		return TruncateResponse(respstr);
 		// End of user code
 	}
 	
 	// Start of user code (user defined operations)
-	
+	public static String TruncateResponse(String resp){
+		return respstr.substring(2, respstr.length() - 2);
+	}
 	// End of user code
 	
 }

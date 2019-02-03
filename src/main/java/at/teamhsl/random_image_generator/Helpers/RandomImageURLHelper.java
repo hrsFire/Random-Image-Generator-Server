@@ -63,6 +63,12 @@ public class RandomImageURLHelper {
 		isr.close();
 		String respstr = resp.toString();
 		JSONObject json = new JSONObject(respstr);
+		return getLinkFromJSON(json);
+		// End of user code
+	}
+	
+	// Start of user code (user defined operations)
+	public static String getLinkFromJSON(JSONObject json){
 		JSONArray jarr = (JSONArray) json.get("items");
 
 		if (jarr != null && jarr.length() > 0) {
@@ -72,13 +78,8 @@ public class RandomImageURLHelper {
 				return (String) jsonObject.get("link");
 			}
 		}
-
 		return null;
-		// End of user code
 	}
-	
-	// Start of user code (user defined operations)
-	
 	// End of user code
 	
 }
