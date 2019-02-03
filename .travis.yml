@@ -14,11 +14,11 @@ jobs:
         - mvn org.jacoco:jacoco-maven-plugin:prepare-agent javadoc:javadoc verify sonar:sonar
         - cd ..
         - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git"
-        - rm -rf Docs/generated/jacoco-ut Docs/generated/jacoco-it Docs/generated/apidocs
-        - cp -r Random-Image-Generator-Server/target/site/jacoco-ut Docs/generated/
-        - cp -r Random-Image-Generator-Server/target/site/jacoco-it Docs/generated/
-        - cp -r Random-Image-Generator-Server/target/site/apidocs Docs/generated/
-        - cd Docs/generated
+        - rm -rf Random-Image-Generator-Docs/generated/jacoco-ut Random-Image-Generator-Docs/generated/jacoco-it Random-Image-Generator-Docs/generated/apidocs
+        - cp -r Random-Image-Generator-Server/target/site/jacoco-ut Random-Image-Generator-Docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/jacoco-it Random-Image-Generator-Docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/apidocs Random-Image-Generator-Docs/generated/
+        - cd Random-Image-Generator-Docs/generated
         - git add --all
         - git commit -am "update documentation"
         - git push "https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git" master
@@ -36,11 +36,11 @@ jobs:
         - mvn verify
         - cd ..
         - "git clone https://${TRAVIS_GITHUB_TOKEN}github.com/hrsFire/Random-Image-Generator-Docs.git"
-        - rm -rf docs/generated/cukedoctor docs/generated/walk_through_*.mp4
+        - rm -rf Random-Image-Generator-Docs/generated/cukedoctor Random-Image-Generator-Docs/generated/walk_through_*.mp4
         - cp -r tests/target/cukedoctor docs/generated/
-        - rm -rf docs/generated/jmeter
-        - cp -r tests/target/jmeter/reports/performance* docs/generated/jmeter
-        - cd docs/generated
+        - rm -rf Random-Image-Generator-Docs/generated/jmeter
+        - cp -r tests/target/jmeter/reports/performance* Random-Image-Generator-Docs/generated/jmeter
+        - cd Random-Image-Generator-Docs/generated
         - ../../get_testingbot_video.py
         - git add --all
         - git commit -am "update documentation"
