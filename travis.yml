@@ -1,0 +1,52 @@
+jobs:
+  include:
+    - stage: build application
+      install:
+        - cp .travis.settings.xml $HOME/.m2/settings.xml
+      script:
+        - mvn deploy
+    - stage: static code analysis
+      addons:
+        sonarcloud:
+          organization: fhv-continuous-delivery
+          token: $SONAR_TOKEN
+      script:
+        - mvn org.jacoco:jacoco-maven-plugin:prepare-agent javadoc:javadoc verify sonar:sonar
+        - cd ..
+        - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git"
+        - rm -rf Docs/generated/jacoco-ut Docs/generated/jacoco-it Docs/generated/apidocs
+        - cp -r Random-Image-Generator-Server/target/site/jacoco-ut docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/jacoco-it docs/generated/
+        - cp -r Random-Image-Generator-Server/target/site/apidocs docs/generated/
+        - cd Docs/generated
+        - git add --all
+        - git commit -am "update documentation"
+        - git push "https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git" master
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: random-image-generator-api-sta
+        api_key: $HEROKU_API_KEY
+    - stage: automatic user acceptance and performance tests on staging
+      script:
+        - cd ..
+        - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Tests.git"
+        - cd tests
+        - mvn verify
+        - cd ..
+        - "git clone https://${TRAVIS_GITHUB_TOKEN}github.com/hrsFire/Random-Image-Generator-Docs.git"
+        - rm -rf docs/generated/cukedoctor docs/generated/walk_through_*.mp4
+        - cp -r tests/target/cukedoctor docs/generated/
+        - rm -rf docs/generated/jmeter
+        - cp -r tests/target/jmeter/reports/performance* docs/generated/jmeter
+        - cd docs/generated
+        - ../../get_testingbot_video.py
+        - git add --all
+        - git commit -am "update documentation"
+        - git push "https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git" master
+    - stage: deploy to production
+      script: skip
+      deploy:
+        <<: *heroku
+        app: random-image-generator-api-fhv

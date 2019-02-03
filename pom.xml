@@ -16,7 +16,19 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>Random-Image-Generator</id>
+			<url>packagecloud+https://packagecloud.io/sobexih/Random-Image-Generator</url>
+		</repository>
+		<snapshotRepository>
+			<id>Random-Image-Generator</id>
+			<url>packagecloud+https://packagecloud.io/sobexih/Random-Image-Generator</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
@@ -44,6 +56,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+
+		<extensions>
+			<extension>
+				<groupId>io.packagecloud.maven.wagon</groupId>
+				<artifactId>maven-packagecloud-wagon</artifactId>
+				<version>0.0.6</version>
+			</extension>
+		</extensions>
 	</build>
 
 </project>
