@@ -8,7 +8,7 @@ jobs:
     - stage: static code analysis
       addons:
         sonarcloud:
-          organization: fhv-continuous-delivery
+          organization: hrsfire-github
           token: $SONAR_TOKEN
       script:
         - mvn org.jacoco:jacoco-maven-plugin:prepare-agent javadoc:javadoc verify sonar:sonar
