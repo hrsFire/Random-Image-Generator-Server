@@ -1,5 +1,9 @@
+package at.teamhsl.random_image_generator;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import at.teamhsl.random_image_generator.Helpers.RandomImageURLHelper;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 public class RandomImageURLHelperTests {
@@ -73,7 +77,8 @@ public class RandomImageURLHelperTests {
                 "   }\n" +
                 "  }\n" +
                 " ]\n" +
-                "}"
-                assertEquals("TestLink", RandomImageURLHelper.getLinkFromJSON(examplejson));
+                "}";
+
+                assertEquals("TestLink", RandomImageURLHelper.getLinkFromJSON(new JSONObject(examplejson)));
     }
 }

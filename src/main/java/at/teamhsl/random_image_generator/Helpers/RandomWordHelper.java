@@ -59,7 +59,7 @@ public class RandomWordHelper {
 	}
 	
 	// Start of user code (user defined operations)
-	public static String TruncateResponse(String resp){
+	public static String TruncateResponse(String respstr){
 		return respstr.substring(2, respstr.length() - 2);
 	}
 	// End of user code
