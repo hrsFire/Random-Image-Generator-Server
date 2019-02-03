@@ -5,7 +5,10 @@ package at.teamhsl.random_image_generator.Helpers;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLEncoder;
 import javax.net.ssl.HttpsURLConnection;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 // End of user code
@@ -42,7 +45,7 @@ public class RandomImageURLHelper {
 	public static String GetRandomImageURL(String Word) throws Exception {
 		// Start of user code GetRandomImageURL
 		RandomImageURLHelper instance = getInstance();
-		instance.APIURL = "https://www.googleapis.com/customsearch/v1?q=" + Word + "&cx=000784618626346885213%3Ar14xhqlh_xc&imgSize=xlarge&num=1&searchType=image&key=";
+		instance.APIURL = "https://www.googleapis.com/customsearch/v1?q=" + URLEncoder.encode(Word, "UTF-8") + "&cx=000784618626346885213%3Ar14xhqlh_xc&imgSize=xlarge&num=1&searchType=image&key=";
 		INSTANCE.APIKEY = "AIzaSyC8BSPovw3UtoxwL9tAMfj7XcIpBoCMrXU";
 		//INSTANCE.APIURL = "https://www.googleapis.com/customsearch/v1?q=cat&cx=000784618626346885213%3Ar14xhqlh_xc&imgSize=xlarge&num=1&searchType=image&key=";
 		URL url = new URL(instance.APIURL + instance.APIKEY);
@@ -60,8 +63,17 @@ public class RandomImageURLHelper {
 		isr.close();
 		String respstr = resp.toString();
 		JSONObject json = new JSONObject(respstr);
-		//JSONArray jarr = (JSONArray) json.get("items");
-		return (String) json.get("link");
+		JSONArray jarr = (JSONArray) json.get("items");
+
+		if (jarr != null && jarr.length() > 0) {
+			JSONObject jsonObject = jarr.getJSONObject(0);
+
+			if (jsonObject != null) {
+				return (String) jsonObject.get("link");
+			}
+		}
+
+		return null;
 		// End of user code
 	}
 	
