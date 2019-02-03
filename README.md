@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/hrsFire/Random-Image-Generator-Server.svg?branch=master)](https://travis-ci.com/hrsFire/Random-Image-Generator-Server)
+
 # Random Image Server 
 Generated Server code with additional custom code for the business logic. It was initialized by using https://start.spring.io/ and requires the Web dependency.
 
