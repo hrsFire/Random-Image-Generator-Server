@@ -41,7 +41,6 @@ jobs:
         - rm -rf Random-Image-Generator-Docs/generated/jmeter
         - cp -r Random-Image-Generator-Tests/target/jmeter/reports/performance* Random-Image-Generator-Docs/generated/jmeter
         - cd Random-Image-Generator-Docs/generated
-	- chmod +x ../../Random-Image-Generator-Tests/Cucumber/get_testingbot_video.py
         - python2 ../../Random-Image-Generator-Tests/Cucumber/get_testingbot_video.py
         - git add --all
         - git commit -am "update documentation"
