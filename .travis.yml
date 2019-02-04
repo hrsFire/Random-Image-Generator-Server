@@ -32,14 +32,14 @@ jobs:
       script:
         - cd ..
         - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Tests.git"
-        - cd tests
+        - cd Random-Image-Generator-Tests
         - mvn verify
         - cd ..
-        - "git clone https://${TRAVIS_GITHUB_TOKEN}github.com/hrsFire/Random-Image-Generator-Docs.git"
+        - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Docs.git"
         - rm -rf Random-Image-Generator-Docs/generated/cukedoctor Random-Image-Generator-Docs/generated/walk_through_*.mp4
-        - cp -r tests/target/cukedoctor docs/generated/
+        - cp -r Random-Image-Generator-Tests/target/cukedoctor docs/generated/
         - rm -rf Random-Image-Generator-Docs/generated/jmeter
-        - cp -r tests/target/jmeter/reports/performance* Random-Image-Generator-Docs/generated/jmeter
+        - cp -r Random-Image-Generator-Tests/target/jmeter/reports/performance* Random-Image-Generator-Docs/generated/jmeter
         - cd Random-Image-Generator-Docs/generated
         - ../../get_testingbot_video.py
         - git add --all
