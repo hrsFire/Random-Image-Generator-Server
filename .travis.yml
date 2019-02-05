@@ -5,6 +5,19 @@ jobs:
         - cp .travis.settings.xml $HOME/.m2/settings.xml
       script:
         - mvn deploy
+    - stage: build web GUI
+      script:
+        - cd ..
+        - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Web-GUI.git"
+        - npm install
+        - npm run-script postinstall
+    - stage: deploy web GUI to staging
+      script:
+	- cd ../Random-Image-Generator-Web-GUI/
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        app: random-image-generator-web-sta
     - stage: static code analysis
       addons:
         sonarcloud:
@@ -50,3 +63,10 @@ jobs:
       deploy:
         <<: *heroku
         app: random-image-generator-api-fhv
+    - stage: deploy web GUI to staging
+      script:
+	- cd ../Random-Image-Generator-Web-GUI/
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        app: random-image-generator-web-gui
