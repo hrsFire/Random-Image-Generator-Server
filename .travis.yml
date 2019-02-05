@@ -14,7 +14,7 @@ jobs:
     - stage: deploy web GUI to staging
       before_deploy:
 	- cd ..
-        - Random-Image-Generator-Web-GUI/
+        - cd Random-Image-Generator-Web-GUI/
       deploy:
         provider: heroku
         api_key: $HEROKU_API_KEY
@@ -66,8 +66,7 @@ jobs:
         app: random-image-generator-api-fhv
     - stage: deploy web GUI to production
       before_deploy:
-	- cd ..
-        - Random-Image-Generator-Web-GUI/
+        - cd Random-Image-Generator-Web-GUI/
       deploy:
         provider: heroku
         api_key: $HEROKU_API_KEY
