@@ -68,6 +68,6 @@ jobs:
         - npm install
         - npm run-script postinstall
       deploy:
-	<<: *clean_heroku
+        <<: *clean_heroku
         skip_cleanup: true
         app: random-image-generator-web-gui
