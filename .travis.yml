@@ -12,8 +12,9 @@ jobs:
         - npm install
         - npm run-script postinstall
     - stage: deploy web GUI to staging
-      script:
-	- cd ../Random-Image-Generator-Web-GUI/
+      before_deploy:
+	- cd ../
+        - Random-Image-Generator-Web-GUI/
       deploy:
         provider: heroku
         api_key: $HEROKU_API_KEY
@@ -64,8 +65,9 @@ jobs:
         <<: *heroku
         app: random-image-generator-api-fhv
     - stage: deploy web GUI to production
-      script:
-	- cd ../Random-Image-Generator-Web-GUI/
+      before_deploy:
+	- cd ../
+        - Random-Image-Generator-Web-GUI/
       deploy:
         provider: heroku
         api_key: $HEROKU_API_KEY
