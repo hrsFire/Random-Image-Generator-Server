@@ -11,7 +11,7 @@ jobs:
         - cd Random-Image-Generator-Web-GUI/
         - npm install
         - npm run-script postinstall
-      deploy: &heroku
+      deploy: &clean_heroku
         skip_cleanup: true
         provider: heroku
         api_key: $HEROKU_API_KEY
@@ -62,9 +62,12 @@ jobs:
         <<: *heroku
         app: random-image-generator-api-fhv
     - stage: deploy Angular App to production
-      before_deploy:
+      script:
+        - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Web-GUI.git"
         - cd Random-Image-Generator-Web-GUI/
+        - npm install
+        - npm run-script postinstall
       deploy:
-        provider: heroku
-        api_key: $HEROKU_API_KEY
+	<<: *clean_heroku
+        skip_cleanup: true
         app: random-image-generator-web-gui
