@@ -18,8 +18,8 @@ public class MainEndpoint {
 	public at.teamhsl.random_image_generator.Model.WordURL GetImageURL(@PathVariable("searchValue") String searchValue) throws Exception {
 		// Start of user code GetImageURL
 		WordURL res = new WordURL();
-		res.RandomWord = RandomWordHelper.GetRandomWord();
-		res.ImageURL = RandomImageURLHelper.GetRandomImageURL(searchValue + " " + res.RandomWord);
+		res.RandomWord = searchValue + " " + RandomWordHelper.GetRandomWord();
+		res.ImageURL = RandomImageURLHelper.GetRandomImageURL(res.RandomWord);
 		return res;
 		// End of user code
 	}
