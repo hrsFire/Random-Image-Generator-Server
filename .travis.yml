@@ -63,7 +63,7 @@ jobs:
       deploy:
         <<: *heroku
         app: random-image-generator-api-fhv
-    - stage: deploy web GUI to staging
+    - stage: deploy web GUI to production
       script:
 	- cd ../Random-Image-Generator-Web-GUI/
       deploy:
