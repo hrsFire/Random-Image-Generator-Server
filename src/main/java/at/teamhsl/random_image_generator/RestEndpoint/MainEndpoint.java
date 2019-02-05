@@ -4,6 +4,7 @@ package at.teamhsl.random_image_generator.RestEndpoint;
 import at.teamhsl.random_image_generator.Helpers.RandomImageURLHelper;
 import at.teamhsl.random_image_generator.Helpers.RandomWordHelper;
 import at.teamhsl.random_image_generator.Model.WordURL;
+import org.springframework.web.bind.annotation.PathVariable;
 // End of user code
 
 @org.springframework.web.bind.annotation.RestController
@@ -13,12 +14,12 @@ public class MainEndpoint {
 	// End of user code
 	
 	
-	@org.springframework.web.bind.annotation.GetMapping("/GetImageURL")
-	public at.teamhsl.random_image_generator.Model.WordURL GetImageURL() throws Exception {
+	@org.springframework.web.bind.annotation.GetMapping("/GetImageURL/{searchValue}")
+	public at.teamhsl.random_image_generator.Model.WordURL GetImageURL(@PathVariable("searchValue") String searchValue) throws Exception {
 		// Start of user code GetImageURL
 		WordURL res = new WordURL();
 		res.RandomWord = RandomWordHelper.GetRandomWord();
-		res.ImageURL = RandomImageURLHelper.GetRandomImageURL(res.RandomWord);
+		res.ImageURL = RandomImageURLHelper.GetRandomImageURL(searchValue + " " + res.RandomWord);
 		return res;
 		// End of user code
 	}
