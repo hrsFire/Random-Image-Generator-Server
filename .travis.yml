@@ -7,13 +7,11 @@ jobs:
         - mvn deploy
     - stage: build web GUI
       script:
-        - cd ..
         - "git clone https://${TRAVIS_GITHUB_TOKEN}@github.com/hrsFire/Random-Image-Generator-Web-GUI.git"
         - npm install
         - npm run-script postinstall
     - stage: deploy web GUI to staging
       before_deploy:
-	- cd ..
         - cd Random-Image-Generator-Web-GUI/
       deploy:
         provider: heroku
