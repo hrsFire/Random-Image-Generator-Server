@@ -39,7 +39,7 @@ public class RandomWordHelper {
 	
 	public static String GetRandomWord() throws Exception {
 		// Start of user code GetRandomWord
-		URL url = new URL("https://random-word-api.herokuapp.com/key");
+		URL url = new URL("https://random-word-fhv.herokuapp.com/key");
 		HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
 		InputStreamReader isr = new InputStreamReader(con.getInputStream());
@@ -55,7 +55,7 @@ public class RandomWordHelper {
 		String apiKey = resp.toString();
 
 
-		String Url = "https://random-word-api.herokuapp.com/word?key=" + URLEncoder.encode(apiKey, "UTF-8")  + "&number=1";
+		String Url = "https://random-word-fhv.herokuapp.com/word?key=" + URLEncoder.encode(apiKey, "UTF-8")  + "&number=1";
 		url = new URL(Url);
 		con = (HttpsURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
